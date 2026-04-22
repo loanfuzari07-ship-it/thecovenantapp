@@ -22,6 +22,7 @@ export default function Home() {
     toggleProtocol,
     toggleDevotional,
     addNote,
+    deleteNote,
   } = usePersistence();
 
   const [activeTab, setActiveTab] = useState('home');
@@ -68,6 +69,7 @@ export default function Home() {
             onToggle={toggleDevotional}
             notes={notes}
             onAddNote={addNote}
+            onDeleteNote={deleteNote}
           />
         )}
         {activeTab === 'bonus' && (

@@ -77,6 +77,17 @@ export function usePersistence() {
     localStorage.setItem('covenant_notes', JSON.stringify(updated));
   };
 
+  const deleteNote = (day: number, index: number) => {
+    const dayNotes = notes[day] || [];
+    const updatedNotes = dayNotes.filter((_, i) => i !== index);
+    const updated = {
+      ...notes,
+      [day]: updatedNotes,
+    };
+    setNotes(updated);
+    localStorage.setItem('covenant_notes', JSON.stringify(updated));
+  };
+
   return {
     isLoaded,
     isLoggedIn,
@@ -89,5 +100,6 @@ export function usePersistence() {
     toggleProtocol,
     toggleDevotional,
     addNote,
+    deleteNote,
   };
 }

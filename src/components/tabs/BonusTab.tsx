@@ -287,7 +287,7 @@ export function BonusTab() {
                   </div>
                   <button 
                     onClick={handleRevealAngel}
-                    className="w-full p-[15px] bg-[#D85A30] rounded-[10px] text-white font-lora font-semibold text-[14px] mt-2 shadow-lg"
+                    className="w-full p-[15px] bg-[#C9A96E] rounded-[10px] text-[#1C1410] font-lora font-semibold text-[14px] mt-2 shadow-lg"
                   >
                     Reveal My Guardian Angel
                   </button>
@@ -323,7 +323,7 @@ export function BonusTab() {
                 <div className="flex gap-2.5">
                   <button 
                     onClick={() => { setIsModalOpen(false); resetModal(); }}
-                    className="flex-1 p-[12px] bg-[#D85A30] border-none rounded-[10px] text-white font-semibold text-[13px]"
+                    className="flex-1 p-[12px] bg-[#C9A96E] border-none rounded-[10px] text-[#1C1410] font-semibold text-[13px]"
                   >
                     Complete
                   </button>

@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { DEVOTIONALS } from '@/app/lib/content';
-import { ChevronDown, CheckCircle2, Save } from 'lucide-react';
+import { ChevronDown, CheckCircle2, Save, Trash2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface DevotionalsTabProps {
@@ -10,9 +10,10 @@ interface DevotionalsTabProps {
   onToggle: (day: number) => void;
   notes: Record<number, { text: string; timestamp: string }[]>;
   onAddNote: (day: number, text: string) => void;
+  onDeleteNote: (day: number, index: number) => void;
 }
 
-export function DevotionalsTab({ completed, onToggle, notes, onAddNote }: DevotionalsTabProps) {
+export function DevotionalsTab({ completed, onToggle, notes, onAddNote, onDeleteNote }: DevotionalsTabProps) {
   const [expandedDay, setExpandedDay] = useState<number | null>(null);
   const [noteText, setNoteText] = useState<Record<number, string>>({});
   const progressPercent = Math.round((completed.length / 21) * 100);
@@ -113,9 +114,15 @@ export function DevotionalsTab({ completed, onToggle, notes, onAddNote }: Devoti
 
                     <div className="mt-3 space-y-2">
                       {dayNotes.map((note, idx) => (
-                        <div key={idx} className="bg-[var(--bg-surface)] rounded-lg p-3">
-                          <p className="text-[12px] md:text-[13px] text-[var(--cream)] leading-relaxed">{note.text}</p>
+                        <div key={idx} className="bg-[var(--bg-surface)] rounded-lg p-3 relative group">
+                          <p className="text-[12px] md:text-[13px] text-[var(--cream)] leading-relaxed pr-8">{note.text}</p>
                           <span className="text-[10px] text-[var(--text-muted)] mt-1 block">{note.timestamp}</span>
+                          <button
+                            onClick={() => onDeleteNote(dev.day, idx)}
+                            className="absolute top-3 right-3 p-1.5 text-[var(--text-muted)] hover:text-[var(--accent)] transition-colors"
+                          >
+                            <Trash2 className="w-3.5 h-3.5" />
+                          </button>
                         </div>
                       ))}
                     </div>

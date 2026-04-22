@@ -31,10 +31,10 @@ export function DevotionalsTab({ completed, onToggle, notes, onAddNote }: Devoti
         <span className="text-[11px] font-medium tracking-widest uppercase text-[var(--gold)] mb-1 block">
           21-Day Devotionals
         </span>
-        <h2 className="font-lora text-[20px] font-semibold text-[var(--cream)] leading-tight mb-2">
+        <h2 className="font-lora text-[20px] md:text-[22px] font-semibold text-[var(--cream)] leading-tight mb-2">
           Daily Reflections for Your Heart
         </h2>
-        <p className="text-[13px] text-[var(--text-secondary)] leading-relaxed">
+        <p className="text-[13px] md:text-[14px] text-[var(--text-secondary)] leading-relaxed">
           Each devotional is designed to complement your daily prayer. Read slowly, reflect deeply, and use the notes section to capture what God is speaking to you.
         </p>
       </div>
@@ -60,11 +60,11 @@ export function DevotionalsTab({ completed, onToggle, notes, onAddNote }: Devoti
           const dayNotes = notes[dev.day] || [];
 
           return (
-            <div key={dev.day} className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[14px] overflow-hidden">
+            <div key={dev.day} className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[14px] md:rounded-[16px] overflow-hidden">
               <div
                 onClick={() => setExpandedDay(isExpanded ? null : dev.day)}
                 className={cn(
-                  "p-4 flex items-center gap-3 cursor-pointer transition-colors",
+                  "p-4 md:p-[18px_20px] flex items-center gap-3 cursor-pointer transition-colors",
                   isCompleted && "bg-[var(--bg-surface)]"
                 )}
               >
@@ -72,25 +72,27 @@ export function DevotionalsTab({ completed, onToggle, notes, onAddNote }: Devoti
                   Day {dev.day}
                 </div>
                 {isCompleted && <CheckCircle2 className="w-4 h-4 text-[var(--gold)]" />}
-                <h4 className="text-[14px] font-semibold text-[var(--cream)] flex-1 line-clamp-1">{dev.title}</h4>
+                <h4 className="text-[14px] md:text-[16px] font-semibold text-[var(--cream)] flex-1 line-clamp-1">{dev.title}</h4>
                 <ChevronDown className={cn("w-4 h-4 text-[var(--text-muted)] transition-transform", isExpanded && "rotate-180")} />
               </div>
 
               {isExpanded && (
-                <div className="px-4 pb-4 animate-in slide-in-from-top-2 duration-200">
-                  <h3 className="font-lora text-[16px] font-semibold text-[var(--cream)] mb-2">{dev.title}</h3>
+                <div className="px-4 pb-4 md:px-[20px] md:pb-[20px] animate-in slide-in-from-top-2 duration-200">
+                  <h3 className="font-lora text-[17px] font-semibold text-[var(--cream)] mb-3 leading-[1.4] md:text-[19px]">
+                    {dev.title}
+                  </h3>
                   
                   <span className="inline-block bg-[rgba(201,169,110,0.1)] text-[var(--gold)] text-[11px] font-medium tracking-widest uppercase px-3 py-1 rounded-full mb-3">
                     {dev.scripture}
                   </span>
 
                   <div className="bg-[var(--bg-surface)] border-l-[3px] border-[var(--gold)] rounded-r-lg p-3 mb-4">
-                    <p className="font-lora text-[13px] italic text-[var(--gold-light)] leading-relaxed">
+                    <p className="font-lora text-[13px] italic text-[var(--gold-light)] leading-relaxed md:text-[14px]">
                       {dev.scriptureText}
                     </p>
                   </div>
 
-                  <p className="text-[13px] text-[var(--text-secondary)] leading-[1.8] mb-6 whitespace-pre-wrap">
+                  <p className="text-[13px] md:text-[14px] text-[var(--text-secondary)] leading-[1.8] mb-6 whitespace-pre-wrap">
                     {dev.reflection}
                   </p>
 
@@ -100,11 +102,11 @@ export function DevotionalsTab({ completed, onToggle, notes, onAddNote }: Devoti
                       value={noteText[dev.day] || ''}
                       onChange={(e) => setNoteText(prev => ({ ...prev, [dev.day]: e.target.value }))}
                       placeholder="Write your reflections here..."
-                      className="w-full min-h-[80px] bg-[var(--bg-surface)] border border-[var(--border)] rounded-lg p-3 text-[13px] text-[var(--cream)] focus:outline-none focus:border-[var(--gold)] resize-y mb-2"
+                      className="w-full min-h-[80px] bg-[var(--bg-surface)] border border-[var(--border)] rounded-lg p-3 text-[13px] md:text-[14px] text-[var(--cream)] focus:outline-none focus:border-[var(--gold)] resize-y mb-2"
                     />
                     <button
                       onClick={() => handleSaveNote(dev.day)}
-                      className="px-4 py-2 border border-[var(--border-active)] rounded-lg text-[var(--gold)] text-[12px] font-semibold hover:bg-[var(--bg-surface)] transition-colors flex items-center gap-2"
+                      className="px-4 py-2 border-2 border-[var(--gold)] rounded-lg text-[var(--gold)] text-[12px] md:text-[13px] font-bold bg-transparent hover:bg-[rgba(201,169,110,0.1)] transition-colors flex items-center gap-2"
                     >
                       <Save className="w-3.5 h-3.5" /> Save Note
                     </button>
@@ -112,7 +114,7 @@ export function DevotionalsTab({ completed, onToggle, notes, onAddNote }: Devoti
                     <div className="mt-3 space-y-2">
                       {dayNotes.map((note, idx) => (
                         <div key={idx} className="bg-[var(--bg-surface)] rounded-lg p-3">
-                          <p className="text-[12px] text-[var(--cream)] leading-relaxed">{note.text}</p>
+                          <p className="text-[12px] md:text-[13px] text-[var(--cream)] leading-relaxed">{note.text}</p>
                           <span className="text-[10px] text-[var(--text-muted)] mt-1 block">{note.timestamp}</span>
                         </div>
                       ))}
@@ -120,7 +122,7 @@ export function DevotionalsTab({ completed, onToggle, notes, onAddNote }: Devoti
                   </div>
 
                   {isCompleted ? (
-                    <div className="w-full py-2.5 bg-[var(--success-bg)] text-[var(--success)] border border-[var(--success)] rounded-lg text-center text-[13px] font-semibold flex items-center justify-center gap-2">
+                    <div className="w-full py-2.5 bg-[var(--success-bg)] text-[var(--success)] border border-[var(--success)] rounded-lg text-center text-[13px] md:text-[14px] font-semibold flex items-center justify-center gap-2">
                       <CheckCircle2 className="w-4 h-4" /> Completed
                     </div>
                   ) : (
@@ -129,7 +131,7 @@ export function DevotionalsTab({ completed, onToggle, notes, onAddNote }: Devoti
                         e.stopPropagation();
                         onToggle(dev.day);
                       }}
-                      className="w-full py-2.5 border border-[var(--border-active)] rounded-lg text-[var(--gold)] text-[13px] font-semibold hover:bg-[var(--bg-surface)] transition-colors"
+                      className="w-full py-2.5 md:py-[16px] bg-transparent border-2 border-[var(--gold)] rounded-lg text-[var(--gold)] text-[13px] md:text-[14px] font-bold hover:bg-[rgba(201,169,110,0.1)] transition-colors"
                     >
                       Mark as Completed
                     </button>

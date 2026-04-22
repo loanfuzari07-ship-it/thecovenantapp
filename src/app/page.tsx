@@ -41,12 +41,12 @@ export default function Home() {
   }
 
   return (
-    <div className="flex flex-col h-svh overflow-hidden relative max-w-[480px] mx-auto bg-[var(--bg-primary)]">
+    <div className="flex flex-col h-svh overflow-hidden relative max-w-[480px] md:max-w-[600px] mx-auto bg-[var(--bg-primary)] lg:shadow-[calc(-1px)_0_0_rgba(201,169,110,0.08),1px_0_0_rgba(201,169,110,0.08)]">
       <AppHeader />
       
       <main 
         ref={scrollContainerRef}
-        className="flex-1 overflow-y-auto mt-[56px] mb-[64px] px-5 pt-5 pb-6 bg-[var(--bg-primary)] view-transition"
+        className="flex-1 overflow-y-auto mt-[56px] md:mt-[64px] mb-[64px] md:mb-[72px] px-5 md:px-[28px] pt-5 md:pt-[28px] pb-6 md:pb-[32px] bg-[var(--bg-primary)] view-transition"
       >
         {activeTab === 'home' && (
           <HomeTab

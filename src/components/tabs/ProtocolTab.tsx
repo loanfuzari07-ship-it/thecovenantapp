@@ -20,10 +20,10 @@ export function ProtocolTab({ completed, onToggle }: ProtocolTabProps) {
         <span className="text-[11px] font-medium tracking-widest uppercase text-[var(--gold)] mb-1 block">
           21-Day Covenant Protocol
         </span>
-        <h2 className="font-lora text-[20px] font-semibold text-[var(--cream)] leading-tight mb-2">
+        <h2 className="font-lora text-[20px] md:text-[22px] font-semibold text-[var(--cream)] leading-tight mb-2">
           Your Daily Prayer Journey
         </h2>
-        <p className="text-[13px] text-[var(--text-secondary)] leading-relaxed">
+        <p className="text-[13px] md:text-[14px] text-[var(--text-secondary)] leading-relaxed">
           Each day contains a guided prayer audio designed to address a specific spiritual root of disconnection in your marriage. Listen with your eyes closed and your heart open.
         </p>
       </div>
@@ -48,11 +48,11 @@ export function ProtocolTab({ completed, onToggle }: ProtocolTabProps) {
           const isExpanded = expandedDay === day.day;
 
           return (
-            <div key={day.day} className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[14px] overflow-hidden">
+            <div key={day.day} className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[14px] md:rounded-[16px] overflow-hidden">
               <div
                 onClick={() => setExpandedDay(isExpanded ? null : day.day)}
                 className={cn(
-                  "p-4 flex items-center gap-3 cursor-pointer transition-colors",
+                  "p-4 md:p-[18px_20px] flex items-center gap-3 cursor-pointer transition-colors",
                   isCompleted && "bg-[var(--bg-surface)]"
                 )}
               >
@@ -60,16 +60,19 @@ export function ProtocolTab({ completed, onToggle }: ProtocolTabProps) {
                   Day {day.day}
                 </div>
                 {isCompleted && <CheckCircle2 className="w-4 h-4 text-[var(--gold)]" />}
-                <h4 className="text-[14px] font-semibold text-[var(--cream)] flex-1 line-clamp-1">{day.title}</h4>
+                <h4 className="text-[14px] md:text-[16px] font-semibold text-[var(--cream)] flex-1 line-clamp-1">{day.title}</h4>
                 <ChevronDown className={cn("w-4 h-4 text-[var(--text-muted)] transition-transform", isExpanded && "rotate-180")} />
               </div>
 
               {isExpanded && (
-                <div className="px-4 pb-4 animate-in slide-in-from-top-2 duration-200">
+                <div className="px-4 pb-4 md:px-[20px] md:pb-[20px] animate-in slide-in-from-top-2 duration-200">
+                  <h3 className="font-lora text-[17px] font-semibold text-[var(--cream)] mb-3 leading-[1.4] md:text-[19px]">
+                    {day.title}
+                  </h3>
                   <span className="inline-block bg-[rgba(201,169,110,0.1)] text-[var(--gold-dark)] text-[10px] font-medium tracking-wider uppercase px-2.5 py-1 rounded-full mb-3">
                     {day.phase}
                   </span>
-                  <p className="text-[13px] text-[var(--text-secondary)] leading-relaxed mb-4">
+                  <p className="text-[13px] md:text-[14px] text-[var(--text-secondary)] leading-relaxed mb-4">
                     {day.description}
                   </p>
 
@@ -88,7 +91,7 @@ export function ProtocolTab({ completed, onToggle }: ProtocolTabProps) {
                   </div>
 
                   {isCompleted ? (
-                    <div className="w-full py-2.5 bg-[var(--success-bg)] text-[var(--success)] border border-[var(--success)] rounded-lg text-center text-[13px] font-semibold flex items-center justify-center gap-2">
+                    <div className="w-full py-2.5 bg-[var(--success-bg)] text-[var(--success)] border border-[var(--success)] rounded-lg text-center text-[13px] md:text-[14px] font-semibold flex items-center justify-center gap-2">
                       <CheckCircle2 className="w-4 h-4" /> Completed
                     </div>
                   ) : (
@@ -97,7 +100,7 @@ export function ProtocolTab({ completed, onToggle }: ProtocolTabProps) {
                         e.stopPropagation();
                         onToggle(day.day);
                       }}
-                      className="w-full py-2.5 border border-[var(--border-active)] rounded-lg text-[var(--gold)] text-[13px] font-semibold hover:bg-[var(--bg-surface)] transition-colors"
+                      className="w-full py-2.5 md:py-[16px] bg-transparent border-2 border-[var(--gold)] rounded-lg text-[var(--gold)] text-[13px] md:text-[14px] font-bold hover:bg-[rgba(201,169,110,0.1)] transition-colors"
                     >
                       Mark as Completed
                     </button>

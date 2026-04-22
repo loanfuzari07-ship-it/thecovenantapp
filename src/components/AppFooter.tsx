@@ -18,7 +18,7 @@ const TABS = [
 
 export function AppFooter({ activeTab, onTabChange }: AppFooterProps) {
   return (
-    <nav className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[480px] h-[64px] bg-[var(--bg-primary)] border-t border-[var(--border)] flex items-center z-[100]">
+    <nav className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[480px] md:max-w-[600px] h-[64px] md:h-[72px] bg-[var(--bg-primary)] border-t border-[var(--border)] flex items-center z-[100]">
       {TABS.map((tab) => {
         const Icon = tab.icon;
         const isActive = activeTab === tab.id;
@@ -31,13 +31,13 @@ export function AppFooter({ activeTab, onTabChange }: AppFooterProps) {
             <Icon
               className={cn(
                 "w-5 h-5 transition-colors",
-                isActive ? "text-[var(--gold)]" : "text-[var(--text-muted)]"
+                isActive ? "text-[var(--gold)]" : "text-[var(--muted-foreground)]"
               )}
             />
             <span
               className={cn(
-                "text-[10px] font-medium tracking-wider uppercase transition-colors",
-                isActive ? "text-[var(--gold)]" : "text-[var(--text-muted)]"
+                "text-[10px] md:text-[11px] font-medium tracking-wider uppercase transition-colors",
+                isActive ? "text-[var(--gold)]" : "text-[var(--muted-foreground)]"
               )}
             >
               {tab.label}

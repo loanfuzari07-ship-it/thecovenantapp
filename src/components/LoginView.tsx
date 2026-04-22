@@ -36,14 +36,14 @@ export function LoginView({ onLogin }: LoginViewProps) {
         <span className="text-[14px] font-medium tracking-[0.15em] uppercase text-[var(--gold)] block mb-1">
           The
         </span>
-        <h1 className="font-lora text-[28px] font-semibold text-[var(--cream)]">
+        <h1 className="font-lora text-[28px] md:text-[30px] font-semibold text-[var(--cream)]">
           Covenant App
         </h1>
       </div>
 
       <div className="w-[60px] h-[1px] bg-[var(--gold)] opacity-40 mb-8" />
 
-      <div className="w-full space-y-3">
+      <div className="w-full max-w-[320px] space-y-3">
         <input
           type="email"
           value={email}
@@ -56,15 +56,15 @@ export function LoginView({ onLogin }: LoginViewProps) {
 
         <button
           onClick={handleAccess}
-          className="w-full bg-[var(--gold)] hover:bg-[var(--gold-dark)] text-[var(--bg-primary)] font-bold py-[15px] rounded-[10px] text-[14px] transition-colors shadow-lg"
+          className="w-full bg-[var(--gold-light)] hover:bg-[var(--gold)] text-[var(--bg-primary)] font-bold py-[15px] md:py-[18px] rounded-[10px] text-[14px] md:text-[15px] transition-colors shadow-lg"
         >
           Access My Program
         </button>
-      </div>
 
-      <p className="text-[12px] text-[var(--text-secondary)] text-center leading-[1.6] mt-6 max-w-[280px]">
-        Enter the email address you used at the time of purchase to access your program.
-      </p>
+        <p className="text-[12px] text-[var(--text-muted)] text-center leading-[1.6] mt-4">
+          Enter the email address you used at the time of purchase to access your program.
+        </p>
+      </div>
     </div>
   );
 }

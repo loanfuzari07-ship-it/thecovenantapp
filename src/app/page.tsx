@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { usePersistence } from '@/hooks/usePersistence';
 import { LoginView } from '@/components/LoginView';
+import { LoadingView } from '@/components/LoadingView';
 import { AppHeader } from '@/components/AppHeader';
 import { AppFooter } from '@/components/AppFooter';
 import { HomeTab } from '@/components/tabs/HomeTab';
@@ -26,7 +27,21 @@ export default function Home() {
   } = usePersistence();
 
   const [activeTab, setActiveTab] = useState('home');
+  const [isStartingUp, setIsStartingUp] = useState(true);
+  const [isLoggingIn, setIsLoggingIn] = useState(false);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (isLoaded) {
+      if (isLoggedIn) {
+        // Valid session detected, show loading for 1000ms
+        const timer = setTimeout(() => setIsStartingUp(false), 1000);
+        return () => clearTimeout(timer);
+      } else {
+        setIsStartingUp(false);
+      }
+    }
+  }, [isLoaded, isLoggedIn]);
 
   const handleTabChange = (tab: string) => {
     setActiveTab(tab);
@@ -35,10 +50,20 @@ export default function Home() {
     }
   };
 
-  if (!isLoaded) return <div className="min-h-screen bg-[var(--bg-primary)]" />;
+  const handleLoginTransition = (email: string) => {
+    setIsLoggingIn(true);
+    setTimeout(() => {
+      login(email);
+      setIsLoggingIn(false);
+    }, 1800);
+  };
+
+  if (!isLoaded || isStartingUp || isLoggingIn) {
+    return <LoadingView />;
+  }
 
   if (!isLoggedIn) {
-    return <LoginView onLogin={login} />;
+    return <LoginView onLogin={handleLoginTransition} />;
   }
 
   return (

@@ -56,7 +56,7 @@ export function LoginView({ onLogin }: LoginViewProps) {
 
         <button
           onClick={handleAccess}
-          className="w-full bg-[var(--gold-light)] hover:bg-[var(--gold)] text-[var(--bg-primary)] font-bold py-[15px] md:py-[18px] rounded-[10px] text-[14px] md:text-[15px] transition-colors shadow-lg"
+          className="w-full bg-[#D85A30] text-white font-bold py-[15px] md:py-[18px] rounded-[10px] text-[14px] md:text-[15px] border-none transition-colors shadow-lg"
         >
           Access My Program
         </button>

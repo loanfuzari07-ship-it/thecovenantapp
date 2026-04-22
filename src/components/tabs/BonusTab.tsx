@@ -61,7 +61,7 @@ const ANGELS: Angel[] = [
     meaning: "Beauty of God",
     guardian: "Beauty, joy and the renewal of hope",
     description: "Jophiel is the angel of divine beauty and joy, the guardian who restores hope when circumstances have made everything feel gray and heavy. Her presence over your life means you were created to carry beauty into every space you enter including the space of your marriage. Jophiel works to renew your sense of hope, to restore the beauty of what your marriage was meant to be and to remind you that God has not finished painting your story.",
-    prayer: "Archangel Jophiel, guardian of divine beauty and keeper of hope, breathe beauty back into my marriage today. Where ugliness has entered bring the beauty of truth. Where joy has left call it back. Where hope has grown faint let it burn bright again. Help me to see my husband through eyes of grace rather than eyes of pain. Help me to see my marriage as God sees it, not as it is today but as it is becoming in His hands. Let beauty have the final word. In the name of Jesus, amen."
+    prayer: "Archangel Jophiel, guardian of divine beauty and keeper of hope, breathe beauty back into my marriage today. Where ugliness has entered bring the beauty of truth. Where joy has left call it back. Where hope has grown faint let it burn bright again. Help me to see my husband through eyes of grace rather than eyes of person. Help me to see my marriage as God sees it, not as it is today but as it is becoming in His hands. Let beauty have the final word. In the name of Jesus, amen."
   }
 ];
 
@@ -246,7 +246,7 @@ export function BonusTab() {
         </p>
         <button 
           onClick={() => setIsModalOpen(true)}
-          className="w-full p-[15px] md:p-[16px] bg-transparent border-2 border-[var(--gold)] rounded-[10px] text-[var(--gold)] text-[14px] font-semibold font-lora hover:bg-[rgba(201,169,110,0.1)] transition-colors"
+          className="w-full p-[15px] bg-[#C9A96E] rounded-[10px] text-[#1C1410] font-semibold font-lora transition-colors"
         >
           Discover My Guardian Angel
         </button>
@@ -287,7 +287,7 @@ export function BonusTab() {
                   </div>
                   <button 
                     onClick={handleRevealAngel}
-                    className="w-full p-[15px] bg-[var(--accent)] rounded-[10px] text-white font-lora font-semibold text-[14px] mt-2 shadow-lg"
+                    className="w-full p-[15px] bg-[#D85A30] rounded-[10px] text-white font-lora font-semibold text-[14px] mt-2 shadow-lg"
                   >
                     Reveal My Guardian Angel
                   </button>
@@ -323,13 +323,13 @@ export function BonusTab() {
                 <div className="flex gap-2.5">
                   <button 
                     onClick={() => { setIsModalOpen(false); resetModal(); }}
-                    className="flex-1 p-[12px] bg-[var(--accent)] rounded-[10px] text-white font-semibold text-[13px]"
+                    className="flex-1 p-[12px] bg-[#D85A30] border-none rounded-[10px] text-white font-semibold text-[13px]"
                   >
                     Complete
                   </button>
                   <button 
                     onClick={handleCopyPrayer}
-                    className="flex-1 p-[12px] bg-transparent border border-[var(--border-active)] rounded-[10px] text-[var(--gold)] font-semibold text-[13px] transition-all"
+                    className="flex-1 p-[12px] bg-[rgba(201,169,110,0.15)] border border-[#C9A96E] rounded-[10px] text-[#C9A96E] font-semibold text-[13px] transition-all"
                   >
                     {copyStatus}
                   </button>

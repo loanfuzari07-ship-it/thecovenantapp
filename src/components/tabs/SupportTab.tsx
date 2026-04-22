@@ -40,6 +40,17 @@ export function SupportTab() {
               <span className="text-[13px] md:text-[14px] text-[var(--cream)]">Mon-Fri, 9:00 AM to 6:00 PM EST</span>
             </div>
           </div>
+
+          <div className="flex gap-3">
+            <div className="w-9 h-9 rounded-full bg-[var(--bg-surface)] flex items-center justify-center flex-shrink-0">
+              <ShieldCheck className="w-4 h-4 text-[var(--gold)]" />
+            </div>
+            <div>
+              <span className="text-[11px] font-medium tracking-widest uppercase text-[var(--gold)] block mb-0.5">Response Time</span>
+              <span className="text-[13px] md:text-[14px] text-[var(--cream)] block">Typically within 24 hours</span>
+              <span className="text-[11px] text-[var(--text-muted)]">(Business days only)</span>
+            </div>
+          </div>
         </div>
       </div>
 

@@ -41,11 +41,7 @@ export function LoginView({ onLogin }: LoginViewProps) {
         </h1>
       </div>
 
-      <div className="w-[60px] h-[1px] bg-[var(--gold)] opacity-40 mb-5" />
-
-      <p className="text-[13px] text-[var(--text-secondary)] text-center leading-[1.6] mb-8 max-w-[280px]">
-        Enter the email address you used at the time of purchase to access your program.
-      </p>
+      <div className="w-[60px] h-[1px] bg-[var(--gold)] opacity-40 mb-8" />
 
       <div className="w-full space-y-3">
         <input
@@ -60,14 +56,14 @@ export function LoginView({ onLogin }: LoginViewProps) {
 
         <button
           onClick={handleAccess}
-          className="w-full bg-[var(--accent)] hover:bg-[var(--accent-dark)] text-white font-semibold py-[15px] rounded-[10px] text-[14px] transition-colors shadow-lg"
+          className="w-full bg-[var(--gold)] hover:bg-[var(--gold-dark)] text-[var(--bg-primary)] font-bold py-[15px] rounded-[10px] text-[14px] transition-colors shadow-lg"
         >
           Access My Program
         </button>
       </div>
 
-      <p className="text-[11px] text-[var(--text-muted)] text-center leading-[1.6] mt-4">
-        Use the same email you used at the time of purchase. Your session will remain active for 7 days.
+      <p className="text-[12px] text-[var(--text-secondary)] text-center leading-[1.6] mt-6 max-w-[280px]">
+        Enter the email address you used at the time of purchase to access your program.
       </p>
     </div>
   );

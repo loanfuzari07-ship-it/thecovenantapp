@@ -86,7 +86,7 @@ export function HomeTab({ protocolCompleted, devotionalCompleted, devotionalNote
 
       <button
         onClick={() => onTabChange('protocol')}
-        className="w-full py-[15px] md:py-[18px] bg-[#D85A30] text-white font-bold rounded-xl text-[14px] md:text-[16px] border-none transition-colors shadow-lg"
+        className="w-full py-[15px] md:py-[18px] bg-[#C9A96E] text-[#1C1410] font-bold rounded-xl text-[14px] md:text-[16px] border-none transition-colors shadow-lg"
       >
         Begin My Journey
       </button>

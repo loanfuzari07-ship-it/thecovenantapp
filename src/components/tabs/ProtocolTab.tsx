@@ -100,7 +100,7 @@ export function ProtocolTab({ completed, onToggle }: ProtocolTabProps) {
                         e.stopPropagation();
                         onToggle(day.day);
                       }}
-                      className="w-full py-2.5 md:py-[16px] bg-transparent border-2 border-[var(--gold)] rounded-lg text-[var(--gold)] text-[13px] md:text-[14px] font-bold hover:bg-[rgba(201,169,110,0.1)] transition-colors"
+                      className="w-full py-2.5 md:py-[16px] bg-[#C9A96E] text-[#1C1410] rounded-lg text-[13px] md:text-[14px] font-bold transition-colors shadow-md"
                     >
                       Mark as Completed
                     </button>

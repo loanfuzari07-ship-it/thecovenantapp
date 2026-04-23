@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Sparkles, Loader2, MessageCircle, HelpCircle, Heart } from "lucide-react";
+import { Sparkles, Loader2, MessageCircle, HelpCircle, Heart, AlertCircle } from "lucide-react";
 import { personalizedReflectionAssistant, type PersonalizedReflectionAssistantOutput } from '@/ai/flows/personalized-reflection-assistant';
 
 interface ReflectionAssistantProps {
@@ -14,9 +14,11 @@ interface ReflectionAssistantProps {
 export function ReflectionAssistant({ devotionalNotes, protocolCompletedDays }: ReflectionAssistantProps) {
   const [loading, setLoading] = useState(false);
   const [insights, setInsights] = useState<PersonalizedReflectionAssistantOutput | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
   async function generateInsights() {
     setLoading(true);
+    setError(null);
     try {
       const inputNotes: Record<string, string[]> = {};
       Object.entries(devotionalNotes).forEach(([day, notesArr]) => {
@@ -28,8 +30,9 @@ export function ReflectionAssistant({ devotionalNotes, protocolCompletedDays }: 
         protocolCompletedDays
       });
       setInsights(result);
-    } catch (error) {
-      console.error(error);
+    } catch (err) {
+      console.error(err);
+      setError("We're having trouble connecting right now. Please try again in a moment.");
     } finally {
       setLoading(false);
     }
@@ -52,6 +55,15 @@ export function ReflectionAssistant({ devotionalNotes, protocolCompletedDays }: 
           Generate Insights
         </Button>
       </div>
+
+      {error && (
+        <Card className="bg-[var(--bg-surface)] border-destructive/50 animate-in fade-in duration-300">
+          <CardContent className="pt-6 flex items-center gap-3">
+            <AlertCircle className="w-5 h-5 text-destructive" />
+            <p className="text-sm text-[var(--text-muted)] font-inter">{error}</p>
+          </CardContent>
+        </Card>
+      )}
 
       {insights && (
         <div className="space-y-4 animate-in fade-in duration-500">

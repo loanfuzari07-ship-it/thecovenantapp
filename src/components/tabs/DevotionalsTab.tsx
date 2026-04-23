@@ -76,7 +76,10 @@ export function DevotionalsTab({ completed, onToggle, notes, onAddNote, onDelete
                   Day {dev.day}
                 </div>
                 {isCompleted && <CheckCircle2 className="w-4 h-4 text-[#639922]" />}
-                <h4 className="text-[14px] md:text-[16px] font-semibold flex-1 line-clamp-1 text-[var(--cream)]">
+                <h4 className={cn(
+                  "text-[14px] md:text-[16px] font-semibold flex-1 line-clamp-1",
+                  isCompleted ? "text-[#639922]" : "text-[var(--cream)]"
+                )}>
                   {dev.title}
                 </h4>
                 <ChevronDown className={cn("w-4 h-4 text-[var(--text-muted)] transition-transform", isExpanded && "rotate-180")} />
@@ -108,7 +111,7 @@ export function DevotionalsTab({ completed, onToggle, notes, onAddNote, onDelete
                       value={noteText[dev.day] || ''}
                       onChange={(e) => setNoteText(prev => ({ ...prev, [dev.day]: e.target.value }))}
                       placeholder="Write your reflections here..."
-                      className="w-full min-h-[80px] bg-[var(--bg-surface)] border border-[var(--border)] rounded-lg p-3 text-[13px] md:text-[14px] text-[var(--cream)] focus:outline-none focus:border-[var(--gold)] resize-y mb-2"
+                      className="w-full min-h-[80px] bg-[var(--bg-surface)] border border-[var(--border)] rounded-lg p-3 text-[16px] text-[var(--cream)] focus:outline-none focus:border-[var(--gold)] resize-y mb-2"
                     />
                     <button
                       onClick={() => handleSaveNote(dev.day)}

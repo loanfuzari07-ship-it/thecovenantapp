@@ -49,14 +49,14 @@ export function LoginView({ onLogin }: LoginViewProps) {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="your@email.com"
-          className="w-full bg-[var(--bg-card)] border border-[var(--border)] focus:border-[var(--gold)] text-[var(--cream)] rounded-[10px] p-[14px] text-[14px] placeholder:text-[var(--text-muted)] focus:outline-none transition-colors"
+          className="w-full bg-[var(--bg-card)] border border-[var(--border)] focus:border-[var(--gold)] text-[var(--cream)] rounded-[10px] p-[14px] text-[16px] placeholder:text-[var(--text-muted)] focus:outline-none transition-colors"
         />
         
         {error && <p className="text-[var(--accent)] text-[12px] text-center">{error}</p>}
 
         <button
           onClick={handleAccess}
-          className="w-full bg-[#C9A96E] text-[#1C1410] font-bold py-[15px] md:py-[18px] rounded-[10px] text-[14px] md:text-[15px] border-none transition-colors shadow-lg"
+          className="w-full bg-[#D85A30] text-white font-bold py-[15px] md:py-[18px] rounded-[10px] text-[14px] md:text-[15px] border-none transition-colors shadow-lg"
         >
           Access My Program
         </button>

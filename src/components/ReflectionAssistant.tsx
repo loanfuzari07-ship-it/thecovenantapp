@@ -2,9 +2,7 @@
 
 import { useState } from 'react';
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Sparkles, Loader2, MessageCircle, HelpCircle, Heart, AlertCircle } from "lucide-react";
-import { personalizedReflectionAssistant, type PersonalizedReflectionAssistantOutput } from '@/ai/flows/personalized-reflection-assistant';
+import { Sparkles, Loader2 } from "lucide-react";
 
 interface ReflectionAssistantProps {
   devotionalNotes: Record<number, { text: string }[]>;
@@ -13,23 +11,32 @@ interface ReflectionAssistantProps {
 
 export function ReflectionAssistant({ devotionalNotes, protocolCompletedDays }: ReflectionAssistantProps) {
   const [loading, setLoading] = useState(false);
-  const [insights, setInsights] = useState<PersonalizedReflectionAssistantOutput | null>(null);
+  const [insights, setInsights] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   async function generateInsights() {
     setLoading(true);
     setError(null);
+    setInsights(null);
+
+    const progress = Math.round(((protocolCompletedDays.length) / 21) * 100);
+
     try {
-      const inputNotes: Record<string, string[]> = {};
-      Object.entries(devotionalNotes).forEach(([day, notesArr]) => {
-        inputNotes[day] = notesArr.map(n => n.text);
+      const response = await fetch('/api/insights', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ 
+          notes: devotionalNotes,
+          progress 
+        }),
       });
 
-      const result = await personalizedReflectionAssistant({
-        devotionalNotes: inputNotes,
-        protocolCompletedDays
-      });
-      setInsights(result);
+      if (!response.ok) throw new Error('Failed to generate insights');
+
+      const data = await response.json();
+      if (data.error) throw new Error(data.error);
+      
+      setInsights(data.insights);
     } catch (err) {
       console.error(err);
       setError("We're having trouble connecting right now. Please try again in a moment.");
@@ -49,65 +56,33 @@ export function ReflectionAssistant({ devotionalNotes, protocolCompletedDays }: 
         <Button 
           onClick={generateInsights} 
           disabled={loading}
-          className="bg-[var(--gold)] hover:bg-[var(--gold-dark)] text-[var(--bg-primary)] font-semibold px-8"
+          className="bg-[var(--gold)] hover:bg-[var(--gold-dark)] text-[var(--bg-primary)] font-bold px-8 py-[15px] h-auto rounded-xl"
         >
-          {loading ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : <Sparkles className="w-4 h-4 mr-2" />}
-          Generate Insights
+          {loading ? (
+            <>
+              <Loader2 className="w-4 h-4 animate-spin mr-2" />
+              Generating your insights...
+            </>
+          ) : (
+            <>
+              <Sparkles className="w-4 h-4 mr-2" />
+              Generate Insights
+            </>
+          )}
         </Button>
       </div>
 
-      {error && (
-        <Card className="bg-[var(--bg-surface)] border-destructive/50 animate-in fade-in duration-300">
-          <CardContent className="pt-6 flex items-center gap-3">
-            <AlertCircle className="w-5 h-5 text-destructive" />
-            <p className="text-sm text-[var(--text-muted)] font-inter">{error}</p>
-          </CardContent>
-        </Card>
-      )}
-
-      {insights && (
-        <div className="space-y-4 animate-in fade-in duration-500">
-          <Card className="bg-[var(--bg-surface)] border-[var(--border)]">
-            <CardHeader className="flex flex-row items-center gap-2">
-              <MessageCircle className="w-5 h-5 text-[var(--gold)]" />
-              <CardTitle className="text-md font-semibold text-[var(--cream)]">Spiritual Insights</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-sm text-[var(--text-secondary)] leading-relaxed italic">"{insights.insights}"</p>
-            </CardContent>
-          </Card>
-
-          <Card className="bg-[var(--bg-surface)] border-[var(--border)]">
-            <CardHeader className="flex flex-row items-center gap-2">
-              <HelpCircle className="w-5 h-5 text-[var(--gold)]" />
-              <CardTitle className="text-md font-semibold text-[var(--cream)]">Reflective Questions</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <ul className="space-y-3">
-                {insights.reflectiveQuestions.map((q, i) => (
-                  <li key={i} className="text-sm text-[var(--text-secondary)] flex gap-2">
-                    <span className="text-[var(--gold)]">•</span> {q}
-                  </li>
-                ))}
-              </ul>
-            </CardContent>
-          </Card>
-
-          <Card className="bg-[var(--bg-surface)] border-[var(--border)]">
-            <CardHeader className="flex flex-row items-center gap-2">
-              <Heart className="w-5 h-5 text-[var(--accent)]" />
-              <CardTitle className="text-md font-semibold text-[var(--cream)]">Custom Prayer Prompts</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <ul className="space-y-3">
-                {insights.prayerPrompts.map((p, i) => (
-                  <li key={i} className="text-sm text-[var(--text-secondary)] flex gap-2">
-                    <span className="text-[var(--accent)]">•</span> {p}
-                  </li>
-                ))}
-              </ul>
-            </CardContent>
-          </Card>
+      {(insights || error) && (
+        <div className="animate-in fade-in duration-500">
+          <div className="bg-[var(--bg-surface)] border-l-[3px] border-[var(--gold)] rounded-[0_12px_12px_0] p-4 mt-4">
+            {error ? (
+              <p className="font-inter text-[13px] text-[var(--text-muted)] leading-relaxed">{error}</p>
+            ) : (
+              <div className="font-inter text-[13px] text-[var(--cream)] whitespace-pre-wrap leading-[1.8]">
+                {insights}
+              </div>
+            )}
+          </div>
         </div>
       )}
     </div>

@@ -20,7 +20,7 @@ const ANGELS: Angel[] = [
     meaning: "Who is like God",
     guardian: "Protection, courage and spiritual warfare",
     description: "Michael is the commander of the heavenly armies and the great protector of those who walk in faith. His assignment over your life means you are called to stand firm even when the battle is fierce. He walks beside you in every spiritual conflict and ensures that no weapon formed against your covenant shall prosper.",
-    prayer: "Archangel Michael, commander of the celestial armies and guardian of my soul, I invoke your powerful protection over my life and my covenant today. Stand between me and every force that seeks to destroy what God has joined together. With your flaming sword of truth, sever every cord of deception, confusion and division that has entered my marriage. Cover my home with your shield of divine protection. Guide my husband back to the truth of his covenant and remind him of the sacred promise he made before God. I am not alone in this battle. You stand with me. In the name of Jesus, amen."
+    prayer: "Archangel Michael, commander of the celestial armies and guardian of my soul, I invoke your powerful protection over my life and my covenant today. Stand between me and every force that seeks to destroy what God has joined together. With your flaming sword of truth, sever every cord of deception, confusion and division that has entered my marriage. Cover my home with your shield of divine protection. Guide my husband back to the truth of his covenant and remind him of who he was created to be. I am not alone in this battle. You stand with me. In the name of Jesus, amen."
   },
   {
     name: "Archangel Gabriel",
@@ -252,16 +252,17 @@ export function BonusTab() {
       </div>
 
       {isModalOpen && (
-        <div className="fixed inset-0 bg-black/85 z-[1000] flex items-start justify-center p-4 overflow-y-auto box-border">
-          <div className="bg-[var(--bg-card)] border border-[var(--border-active)] rounded-[20px] w-full max-w-[420px] max-h-none overflow-visible p-6 relative animate-in zoom-in-95 duration-200 mt-4 mb-4 box-border">
+        <div className="fixed inset-0 z-[9999] flex flex-col items-center p-[20px_16px_40px] box-border bg-black/90 overflow-y-scroll overscroll-behavior-contain" style={{ WebkitOverflowScrolling: 'touch' }}>
+          <div className="w-full max-w-[420px] bg-[var(--bg-card)] border border-[var(--border-active)] rounded-[20px] p-[20px_18px] box-border relative flex-shrink-0 animate-in zoom-in-95 duration-200">
+            <button onClick={() => { setIsModalOpen(false); resetModal(); }} className="absolute top-[12px] right-[12px] w-8 h-8 rounded-full bg-[var(--bg-surface)] border border-[var(--border)] flex items-center justify-center text-[var(--text-muted)] z-10">
+              <X className="w-4 h-4" />
+            </button>
+
             {modalScreen === 'A' && (
-              <>
-                <button onClick={() => setIsModalOpen(false)} className="absolute top-4 right-4 w-8 h-8 rounded-full bg-[var(--bg-surface)] border border-[var(--border)] flex items-center justify-center text-[var(--text-muted)]">
-                  <X className="w-4 h-4" />
-                </button>
+              <div className="h-auto overflow-visible">
                 <div className="text-center mb-4 text-[var(--gold)] text-[32px]">✦</div>
-                <h3 className="font-lora text-[20px] font-semibold text-[var(--cream)] text-center mb-1.5 sm:text-[19px]">Your Sacred Birth Profile</h3>
-                <p className="text-[13px] text-[var(--text-secondary)] text-center leading-relaxed mb-6 sm:text-[12px]">Enter your birth date and time to reveal which angel has been guiding and protecting your covenant journey.</p>
+                <h3 className="font-lora text-[20px] font-semibold text-[var(--cream)] text-center mb-1.5 max-sm:text-[19px]">Your Sacred Birth Profile</h3>
+                <p className="text-[13px] text-[var(--text-secondary)] text-center leading-relaxed mb-6 max-sm:text-[12px]">Enter your birth date and time to reveal which angel has been guiding and protecting your covenant journey.</p>
                 
                 <div className="space-y-4">
                   <div>
@@ -291,53 +292,53 @@ export function BonusTab() {
                     Reveal My Guardian Angel
                   </button>
                 </div>
-              </>
+              </div>
             )}
 
             {modalScreen === 'B' && (
-              <div className="flex flex-col items-center justify-center py-10 min-h-[220px]">
+              <div className="flex flex-col items-center justify-center py-10 min-h-[220px] h-auto overflow-visible">
                 <div className="w-12 h-12 border-2 border-[rgba(201,169,110,0.2)] border-top-2 border-t-[var(--gold)] rounded-full animate-spin mb-5"></div>
-                <p className="font-lora text-[16px] text-[var(--cream)] text-center mb-2 sm:text-[15px]">Reading the celestial patterns...</p>
-                <p className="text-[13px] text-[var(--text-secondary)] text-center sm:text-[12px]">Consulting the sacred calendar of your birth</p>
+                <p className="font-lora text-[16px] text-[var(--cream)] text-center mb-2 max-sm:text-[15px]">Reading the celestial patterns...</p>
+                <p className="text-[13px] text-[var(--text-secondary)] text-center max-sm:text-[12px]">Consulting the sacred calendar of your birth</p>
               </div>
             )}
 
             {modalScreen === 'C' && angel && (
-              <div className="animate-in fade-in duration-500 overflow-visible">
+              <div className="animate-in fade-in duration-500 h-auto overflow-visible w-full pb-[32px]">
                 <div className="bg-[var(--bg-surface)] rounded-[12px] p-5 text-center mb-5">
                   <span className="text-[10px] uppercase text-[var(--gold)] tracking-widest block mb-2">Your Guardian Angel</span>
-                  <h3 className="font-lora text-[24px] font-semibold text-[var(--cream)] mb-1 sm:text-[23px]">{angel.name}</h3>
+                  <h3 className="font-lora text-[24px] font-semibold text-[var(--cream)] mb-1 max-sm:text-[22px]">{angel.name}</h3>
                   <p className="text-[12px] text-[var(--gold-light)] mb-2">Meaning: {angel.meaning}</p>
                   <div className="w-10 h-[1px] bg-[var(--gold)] mx-auto my-2 opacity-50"></div>
                   <p className="text-[12px] text-[var(--text-secondary)]">Guardian of {angel.guardian}</p>
                 </div>
                 
-                <p className="text-[13px] text-[var(--text-secondary)] leading-[1.8] mb-5 sm:text-[12px]">{angel.description}</p>
+                <p className="text-[13px] text-[var(--text-secondary)] leading-[1.8] mb-5 max-sm:text-[12px]">{angel.description}</p>
                 
                 <span className="text-[11px] uppercase text-[var(--gold)] block mb-2.5 font-medium">Your Sacred Prayer</span>
-                <div className="bg-[var(--bg-surface)] border-l-[3px] border-[var(--gold)] rounded-r-[12px] p-4 mb-4">
-                  <p className="font-lora text-[13px] italic text-[var(--cream)] leading-[1.8] sm:text-[12px]">{angel.prayer}</p>
+                <div className="bg-[var(--bg-surface)] border-l-[3px] border-[var(--gold)] rounded-r-[12px] p-4 mb-4 h-auto overflow-visible">
+                  <p className="font-lora text-[13px] italic text-[var(--cream)] leading-[1.8] max-sm:text-[12px]">{angel.prayer}</p>
                 </div>
 
-                <div className="flex gap-2.5">
+                <div className="flex gap-[10px] w-full mt-[16px]">
                   <button 
                     onClick={() => { setIsModalOpen(false); resetModal(); }}
-                    className="flex-1 p-[12px] bg-[#C9A96E] border-none rounded-[10px] text-[#1C1410] font-semibold text-[13px]"
+                    className="flex-1 p-[12px_8px] bg-[#C9A96E] border-none rounded-[10px] text-[#1C1410] font-semibold text-[13px] min-w-0 whitespace-nowrap"
                   >
                     Complete
                   </button>
                   <button 
                     onClick={handleCopyPrayer}
-                    className="flex-1 p-[12px] bg-[rgba(201,169,110,0.15)] border border-[#C9A96E] rounded-[10px] text-[#C9A96E] font-semibold text-[13px] transition-all"
+                    className="flex-1 p-[12px_8px] bg-[rgba(201,169,110,0.15)] border border-[#C9A96E] rounded-[10px] text-[#C9A96E] font-semibold text-[13px] min-w-0 transition-all whitespace-nowrap"
                   >
                     {copyStatus}
                   </button>
                 </div>
                 
-                <p className="text-[11px] text-[var(--text-muted)] text-center mt-3">The same birth date will always reveal the same guardian angel.</p>
+                <p className="text-[11px] text-[var(--text-muted)] text-center mt-[12px] pb-[8px]">The same birth date will always reveal the same guardian angel.</p>
                 <button 
                   onClick={() => setModalScreen('A')}
-                  className="w-full text-[11px] text-[var(--text-secondary)] text-center underline mt-1.5 cursor-pointer block mb-6"
+                  className="w-full text-[12px] text-[var(--text-secondary)] text-center underline mt-[10px] mb-[24px] cursor-pointer block"
                 >
                   Try a different date
                 </button>

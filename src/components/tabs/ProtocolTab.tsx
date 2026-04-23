@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { PROTOCOL_DAYS } from '@/app/lib/content';
 import { ChevronDown, CheckCircle2, Download } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { CustomAudioPlayer } from '@/components/CustomAudioPlayer';
 
 interface ProtocolTabProps {
   completed: number[];
@@ -56,11 +57,19 @@ export function ProtocolTab({ completed, onToggle }: ProtocolTabProps) {
                   isCompleted && "bg-[var(--bg-surface)]"
                 )}
               >
-                <div className="bg-[var(--bg-surface)] border border-[var(--border-active)] px-3 py-1 rounded-full text-[11px] font-semibold text-[var(--gold)]">
+                <div className={cn(
+                  "bg-[var(--bg-surface)] border border-[var(--border-active)] px-3 py-1 rounded-full text-[11px] font-semibold transition-colors",
+                  isCompleted ? "text-[#639922]" : "text-[var(--gold)]"
+                )}>
                   Day {day.day}
                 </div>
-                {isCompleted && <CheckCircle2 className="w-4 h-4 text-[var(--gold)]" />}
-                <h4 className="text-[14px] md:text-[16px] font-semibold text-[var(--cream)] flex-1 line-clamp-1">{day.title}</h4>
+                {isCompleted && <CheckCircle2 className="w-4 h-4 text-[#639922]" />}
+                <h4 className={cn(
+                  "text-[14px] md:text-[16px] font-semibold flex-1 line-clamp-1 transition-colors",
+                  isCompleted ? "text-[#639922]" : "text-[var(--cream)]"
+                )}>
+                  {day.title}
+                </h4>
                 <ChevronDown className={cn("w-4 h-4 text-[var(--text-muted)] transition-transform", isExpanded && "rotate-180")} />
               </div>
 
@@ -76,22 +85,12 @@ export function ProtocolTab({ completed, onToggle }: ProtocolTabProps) {
                     {day.description}
                   </p>
 
-                  <div className="bg-[var(--bg-surface)] border border-[var(--border)] rounded-[10px] p-[12px_16px] mb-[14px]">
-                    <audio 
-                      controls 
-                      preload="none" 
-                      src={`/audios/day${day.day}-prayer.MP3`}
-                      className="w-full accent-[var(--gold)] bg-transparent"
-                    />
-                    <p className="text-[11px] text-[var(--text-muted)] mt-[6px] text-center">
-                      Listen with headphones for the best experience.
-                    </p>
-                  </div>
+                  <CustomAudioPlayer src={`/audios/day${day.day}-prayer.MP3`} />
 
                   <a
                     href={`/pdfs/day${day.day}-guide.pdf`}
                     download
-                    className="flex items-center justify-center gap-2 w-full p-[11px_16px] bg-transparent border border-[var(--gold)] rounded-[8px] text-[var(--gold)] text-[12px] font-bold font-inter cursor-pointer mb-[10px] no-underline hover:bg-[rgba(201,169,110,0.1)] transition-colors"
+                    className="flex items-center justify-center gap-2 w-full p-[11px_16px] bg-[var(--cream)] hover:bg-[var(--gold-light)] text-[var(--bg-primary)] border-none rounded-[8px] text-[12px] font-bold font-inter cursor-pointer mb-[10px] no-underline transition-colors"
                   >
                     <Download className="w-[14px] h-[14px]" />
                     Download Prayer Guide
@@ -107,7 +106,7 @@ export function ProtocolTab({ completed, onToggle }: ProtocolTabProps) {
                         e.stopPropagation();
                         onToggle(day.day);
                       }}
-                      className="w-full py-2.5 md:py-[16px] bg-transparent border-2 border-[var(--gold)] text-[var(--gold)] rounded-lg text-[13px] md:text-[14px] font-bold hover:bg-[rgba(201,169,110,0.1)] transition-colors shadow-md"
+                      className="w-full py-2.5 md:py-[16px] bg-[var(--accent)] hover:bg-[var(--accent-dark)] border-none text-white rounded-[8px] text-[13px] md:text-[14px] font-bold transition-colors shadow-md"
                     >
                       Mark as Completed
                     </button>

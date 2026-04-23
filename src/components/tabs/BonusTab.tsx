@@ -2,8 +2,9 @@
 
 import { useState } from 'react';
 import { FREQUENCIES, TEXTS } from '@/app/lib/content';
-import { AlertTriangle, ChevronDown, X, Download } from 'lucide-react';
+import { AlertTriangle, ChevronDown, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { CustomAudioPlayer } from '@/components/CustomAudioPlayer';
 
 interface Angel {
   name: string;
@@ -163,17 +164,7 @@ export function BonusTab() {
                     <p className="text-[12px] md:text-[13px] text-[var(--cream)] leading-relaxed">{freq.usage}</p>
                   </div>
                   
-                  <div className="bg-[var(--bg-surface)] border border-[var(--border)] rounded-[10px] p-[12px_16px] mb-[14px]">
-                    <audio 
-                      controls 
-                      preload="none" 
-                      src={`/frequencies/${freq.value.replace(' ', '').toUpperCase()}.MP3`}
-                      className="w-full accent-[var(--gold)] bg-transparent"
-                    />
-                    <p className="text-[11px] text-[var(--text-muted)] mt-[6px] text-center">
-                      Listen with headphones for the best experience.
-                    </p>
-                  </div>
+                  <CustomAudioPlayer src={`/frequencies/${freq.value.replace(' ', '').toUpperCase()}.MP3`} />
                 </div>
               )}
             </div>
@@ -249,7 +240,7 @@ export function BonusTab() {
         </p>
         <button 
           onClick={() => setIsModalOpen(true)}
-          className="w-full p-[15px] bg-transparent border border-[var(--gold)] rounded-[10px] text-[var(--gold)] font-semibold font-lora transition-colors"
+          className="w-full p-[15px] bg-[#C9A96E] border-none rounded-[10px] text-[#1C1410] font-semibold font-lora transition-colors"
         >
           Discover My Guardian Angel
         </button>
@@ -290,7 +281,7 @@ export function BonusTab() {
                   </div>
                   <button 
                     onClick={handleRevealAngel}
-                    className="w-full p-[15px] bg-[var(--accent)] rounded-[10px] text-white font-lora font-semibold text-[14px] mt-2 shadow-lg"
+                    className="w-full p-[15px] bg-[#C9A96E] rounded-[10px] text-[#1C1410] font-lora font-semibold text-[14px] mt-2 shadow-lg"
                   >
                     Reveal My Guardian Angel
                   </button>
@@ -326,13 +317,13 @@ export function BonusTab() {
                 <div className="flex gap-2.5">
                   <button 
                     onClick={() => { setIsModalOpen(false); resetModal(); }}
-                    className="flex-1 p-[12px] bg-[var(--accent)] border-none rounded-[10px] text-white font-semibold text-[13px]"
+                    className="flex-1 p-[12px] bg-[#C9A96E] border-none rounded-[10px] text-[#1C1410] font-semibold text-[13px]"
                   >
                     Complete
                   </button>
                   <button 
                     onClick={handleCopyPrayer}
-                    className="flex-1 p-[12px] bg-transparent border border-[var(--border-active)] rounded-[10px] text-[var(--gold)] font-semibold text-[13px] transition-all"
+                    className="flex-1 p-[12px] bg-[rgba(201,169,110,0.15)] border border-[#C9A96E] rounded-[10px] text-[#C9A96E] font-semibold text-[13px] transition-all"
                   >
                     {copyStatus}
                   </button>

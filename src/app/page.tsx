@@ -20,6 +20,7 @@ export default function Home() {
     devotionalCompleted,
     notes,
     login,
+    logout,
     toggleProtocol,
     toggleDevotional,
     addNote,
@@ -68,7 +69,7 @@ export default function Home() {
 
   return (
     <div className="flex flex-col h-svh overflow-hidden relative max-w-[480px] md:max-w-[600px] mx-auto bg-[var(--bg-primary)] lg:shadow-[calc(-1px)_0_0_rgba(201,169,110,0.08),1px_0_0_rgba(201,169,110,0.08)]">
-      <AppHeader />
+      <AppHeader onLogout={logout} />
       
       <main 
         ref={scrollContainerRef}

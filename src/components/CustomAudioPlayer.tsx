@@ -6,9 +6,12 @@ import { cn } from '@/lib/utils';
 
 interface CustomAudioPlayerProps {
   src: string;
+  title?: string;
+  artist?: string;
+  album?: string;
 }
 
-export function CustomAudioPlayer({ src }: CustomAudioPlayerProps) {
+export function CustomAudioPlayer({ src, title, artist, album }: CustomAudioPlayerProps) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [progress, setProgress] = useState(0);
   const [currentTime, setCurrentTime] = useState('0:00');
@@ -24,12 +27,45 @@ export function CustomAudioPlayer({ src }: CustomAudioPlayerProps) {
     return `${mins}:${secs.toString().padStart(2, '0')}`;
   };
 
+  const updateMediaSession = () => {
+    if ('mediaSession' in navigator && audioRef.current) {
+      const audio = audioRef.current;
+      navigator.mediaSession.metadata = new MediaMetadata({
+        title: title || 'Sacred Audio',
+        artist: artist || 'The Covenant App',
+        album: album || 'Covenant Protocol',
+      });
+
+      navigator.mediaSession.setActionHandler('play', () => {
+        audio.play();
+        setIsPlaying(true);
+      });
+      navigator.mediaSession.setActionHandler('pause', () => {
+        audio.pause();
+        setIsPlaying(false);
+      });
+      navigator.mediaSession.setActionHandler('seekbackward', () => {
+        audio.currentTime = Math.max(audio.currentTime - 10, 0);
+      });
+      navigator.mediaSession.setActionHandler('seekforward', () => {
+        audio.currentTime = Math.min(audio.currentTime + 10, audio.duration);
+      });
+    }
+  };
+
   const togglePlay = () => {
     if (audioRef.current) {
       if (isPlaying) {
         audioRef.current.pause();
+        if ('mediaSession' in navigator) {
+          navigator.mediaSession.playbackState = 'paused';
+        }
       } else {
         audioRef.current.play();
+        updateMediaSession();
+        if ('mediaSession' in navigator) {
+          navigator.mediaSession.playbackState = 'playing';
+        }
       }
       setIsPlaying(!isPlaying);
     }
@@ -73,6 +109,9 @@ export function CustomAudioPlayer({ src }: CustomAudioPlayerProps) {
         setIsPlaying(false);
         setProgress(0);
         setCurrentTime('0:00');
+        if ('mediaSession' in navigator) {
+          navigator.mediaSession.playbackState = 'none';
+        }
       };
       audio.addEventListener('ended', handleEnded);
       return () => audio.removeEventListener('ended', handleEnded);

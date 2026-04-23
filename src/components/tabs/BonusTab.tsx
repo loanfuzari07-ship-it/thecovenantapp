@@ -164,7 +164,12 @@ export function BonusTab() {
                     <p className="text-[12px] md:text-[13px] text-[var(--cream)] leading-relaxed">{freq.usage}</p>
                   </div>
                   
-                  <CustomAudioPlayer src={`/frequencies/${freq.value.replace(' ', '').toUpperCase()}.MP3`} />
+                  <CustomAudioPlayer 
+                    src={`/frequencies/${freq.value.replace(' ', '').toUpperCase()}.MP3`}
+                    title={`${freq.value} - ${freq.title}`}
+                    artist="The Covenant App"
+                    album="Sacred Frequency Audio Series"
+                  />
                 </div>
               )}
             </div>
@@ -281,7 +286,7 @@ export function BonusTab() {
                   </div>
                   <button 
                     onClick={handleRevealAngel}
-                    className="w-full p-[15px] bg-[#C9A96E] rounded-[10px] text-[#1C1410] font-lora font-semibold text-[14px] mt-2 shadow-lg"
+                    className="w-full p-[15px] bg-[#D85A30] text-white rounded-[10px] font-lora font-semibold text-[14px] mt-2 shadow-lg"
                   >
                     Reveal My Guardian Angel
                   </button>
@@ -317,7 +322,7 @@ export function BonusTab() {
                 <div className="flex gap-2.5">
                   <button 
                     onClick={() => { setIsModalOpen(false); resetModal(); }}
-                    className="flex-1 p-[12px] bg-[#C9A96E] border-none rounded-[10px] text-[#1C1410] font-semibold text-[13px]"
+                    className="flex-1 p-[12px] bg-[#D85A30] border-none rounded-[10px] text-white font-semibold text-[13px]"
                   >
                     Complete
                   </button>

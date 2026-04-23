@@ -82,12 +82,17 @@ export function ProtocolTab({ completed, onToggle }: ProtocolTabProps) {
                     {day.description}
                   </p>
 
-                  <CustomAudioPlayer src={`/audios/day${day.day}-prayer.MP3`} />
+                  <CustomAudioPlayer 
+                    src={`/audios/day${day.day}-prayer.MP3`}
+                    title={`Day ${day.day} Prayer - ${day.title}`}
+                    artist="The Covenant App"
+                    album="21-Day Covenant Protocol"
+                  />
 
                   <a
                     href={`/pdfs/day${day.day}-guide.pdf`}
                     download
-                    className="flex items-center justify-center gap-2 w-full p-[11px_16px] bg-transparent hover:bg-[rgba(201,169,110,0.1)] text-[var(--gold)] border border-[var(--border-active)] rounded-[8px] text-[12px] font-bold font-inter cursor-pointer mb-[10px] no-underline transition-colors"
+                    className="flex items-center justify-center gap-2 w-full p-[11px_16px] bg-[#221810] text-[var(--gold)] border border-[var(--border-active)] rounded-[8px] text-[12px] font-bold font-inter cursor-pointer mb-[10px] no-underline transition-colors hover:bg-[rgba(201,169,110,0.1)]"
                   >
                     <Download className="w-[14px] h-[14px]" />
                     Download Prayer Guide

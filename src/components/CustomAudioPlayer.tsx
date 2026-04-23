@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from 'react';
-import { Play, Pause, Volume2 } from 'lucide-react';
+import { Play, Pause } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface CustomAudioPlayerProps {
@@ -16,7 +16,6 @@ export function CustomAudioPlayer({ src, title, artist, album }: CustomAudioPlay
   const [progress, setProgress] = useState(0);
   const [currentTime, setCurrentTime] = useState('0:00');
   const [duration, setDuration] = useState('0:00');
-  const [volume, setVolume] = useState(1);
   const audioRef = useRef<HTMLAudioElement>(null);
   const progressBarRef = useRef<HTMLDivElement>(null);
 
@@ -94,14 +93,6 @@ export function CustomAudioPlayer({ src, title, artist, album }: CustomAudioPlay
     }
   };
 
-  const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const val = parseFloat(e.target.value);
-    setVolume(val);
-    if (audioRef.current) {
-      audioRef.current.volume = val;
-    }
-  };
-
   useEffect(() => {
     const audio = audioRef.current;
     if (audio) {
@@ -129,7 +120,7 @@ export function CustomAudioPlayer({ src, title, artist, album }: CustomAudioPlay
         className="hidden"
       />
       
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-4">
         <button
           onClick={togglePlay}
           className="w-10 h-10 rounded-full bg-[var(--accent)] hover:bg-[var(--accent-dark)] border-none cursor-pointer flex items-center justify-center flex-shrink-0 transition-colors"
@@ -145,7 +136,7 @@ export function CustomAudioPlayer({ src, title, artist, album }: CustomAudioPlay
         </button>
 
         <div className="flex-1 flex flex-col gap-1.5">
-          <div className="flex items-center gap-2">
+          <div className="flex items-center">
             <div 
               ref={progressBarRef}
               onClick={handleSeek}
@@ -162,21 +153,8 @@ export function CustomAudioPlayer({ src, title, artist, album }: CustomAudioPlay
             <span className="text-[10px] font-medium text-[var(--text-muted)] font-inter">{duration}</span>
           </div>
         </div>
-
-        <div className="flex items-center gap-1.5 ml-1">
-          <Volume2 className="w-4 h-4 text-[var(--text-muted)]" />
-          <input
-            type="range"
-            min="0"
-            max="1"
-            step="0.01"
-            value={volume}
-            onChange={handleVolumeChange}
-            className="w-[60px] h-[3px] accent-[var(--gold)] cursor-pointer appearance-none bg-[rgba(201,169,110,0.2)] rounded-full"
-          />
-        </div>
       </div>
-      <p className="text-[11px] text-[var(--text-muted)] text-center mt-1.5 font-inter">
+      <p className="text-[11px] text-[var(--text-muted)] text-center mt-2 font-inter">
         Listen with headphones for the best experience.
       </p>
     </div>

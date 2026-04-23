@@ -1,4 +1,3 @@
-
 "use client";
 
 import { Mail, Clock, ShieldCheck } from 'lucide-react';
@@ -28,7 +27,7 @@ export function SupportTab() {
             </div>
             <div>
               <span className="text-[11px] font-medium tracking-widest uppercase text-[var(--gold)] block mb-0.5">Email Support</span>
-              <span className="text-[13px] md:text-[14px] text-[var(--cream)]">lanovdigital@gmail.com</span>
+              <span className="text-[13px] md:text-[14px] text-[var(--cream)]">contact.faithfulsilence@gmail.com</span>
             </div>
           </div>
 
@@ -56,7 +55,7 @@ export function SupportTab() {
       </div>
 
       <a
-        href="mailto:lanovdigital@gmail.com?subject=Covenant App Support Request"
+        href="mailto:contact.faithfulsilence@gmail.com?subject=Covenant App Support Request"
         className="block w-full py-[15px] md:py-[18px] bg-[#C9A96E] hover:bg-[#A8854A] text-[#1C1410] text-center font-bold rounded-xl text-[14px] md:text-[15px] transition-colors shadow-lg no-underline"
       >
         Contact Support Team

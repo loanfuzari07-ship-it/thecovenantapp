@@ -7,7 +7,7 @@ export function LoadingView() {
     <div id="view-loading" className="fixed inset-0 bg-[var(--bg-primary)] flex flex-col items-center justify-center min-h-screen gap-[20px] z-[1000]">
       <div className="w-[64px] h-[64px] rounded-[12px] overflow-hidden opacity-90">
         <Image
-          src="https://imgur.com/WlFfcnl.png"
+          src="https://imgur.com/nkvXAmb.png"
           alt="The Covenant App Logo"
           width={64}
           height={64}

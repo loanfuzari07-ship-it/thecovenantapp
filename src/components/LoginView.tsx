@@ -24,7 +24,7 @@ export function LoginView({ onLogin }: LoginViewProps) {
     <div className="min-h-svh bg-[var(--bg-primary)] flex flex-col items-center justify-center p-6 sm:p-10 animate-in fade-in duration-500">
       <div className="w-20 h-20 bg-[var(--bg-card)] rounded-2xl mb-4 overflow-hidden shadow-xl border border-[var(--border)]">
         <Image
-          src="https://imgur.com/WlFfcnl.png"
+          src="https://imgur.com/nkvXAmb.png"
           alt="The Covenant App Logo"
           width={80}
           height={80}
@@ -56,7 +56,7 @@ export function LoginView({ onLogin }: LoginViewProps) {
 
         <button
           onClick={handleAccess}
-          className="w-full bg-[#D85A30] text-white font-bold py-[15px] md:py-[18px] rounded-[10px] text-[14px] md:text-[15px] border-none transition-colors shadow-lg"
+          className="w-full bg-[#C9A96E] text-[#1C1410] font-bold py-[15px] md:py-[18px] rounded-[10px] text-[14px] md:text-[15px] border-none transition-colors shadow-lg"
         >
           Access My Program
         </button>

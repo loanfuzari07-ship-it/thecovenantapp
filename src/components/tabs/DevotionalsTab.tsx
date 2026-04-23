@@ -79,7 +79,7 @@ export function DevotionalsTab({ completed, onToggle, notes, onAddNote, onDelete
 
               {isExpanded && (
                 <div className="px-4 pb-4 md:px-[20px] md:pb-[20px] animate-in slide-in-from-top-2 duration-200">
-                  <h3 className="font-lora text-[17px] font-semibold text-[var(--cream)] mb-3 leading-[1.4] md:text-[19px]">
+                  <h3 className="font-lora text-[17px] md:text-[19px] font-semibold text-[var(--cream)] mb-[12px] leading-[1.4]">
                     {dev.title}
                   </h3>
                   
@@ -107,7 +107,7 @@ export function DevotionalsTab({ completed, onToggle, notes, onAddNote, onDelete
                     />
                     <button
                       onClick={() => handleSaveNote(dev.day)}
-                      className="px-4 py-2 border-2 border-[var(--gold)] rounded-lg text-[var(--gold)] text-[12px] md:text-[13px] font-bold bg-transparent hover:bg-[rgba(201,169,110,0.1)] transition-colors flex items-center gap-2"
+                      className="px-4 py-2 border border-[var(--gold)] rounded-lg text-[var(--gold)] text-[12px] md:text-[13px] font-bold bg-transparent hover:bg-[rgba(201,169,110,0.1)] transition-colors flex items-center gap-2"
                     >
                       <Save className="w-3.5 h-3.5" /> Save Note
                     </button>
@@ -138,7 +138,7 @@ export function DevotionalsTab({ completed, onToggle, notes, onAddNote, onDelete
                         e.stopPropagation();
                         onToggle(dev.day);
                       }}
-                      className="w-full py-2.5 md:py-[16px] bg-[#C9A96E] text-[#1C1410] rounded-lg text-[13px] md:text-[14px] font-bold transition-colors shadow-md"
+                      className="w-full py-2.5 md:py-[16px] bg-transparent border-2 border-[var(--gold)] text-[var(--gold)] rounded-lg text-[13px] md:text-[14px] font-bold hover:bg-[rgba(201,169,110,0.1)] transition-colors shadow-md"
                     >
                       Mark as Completed
                     </button>

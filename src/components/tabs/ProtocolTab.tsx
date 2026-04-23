@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { PROTOCOL_DAYS } from '@/app/lib/content';
-import { ChevronDown, CheckCircle2, Play } from 'lucide-react';
+import { ChevronDown, CheckCircle2, Download } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface ProtocolTabProps {
@@ -66,7 +66,7 @@ export function ProtocolTab({ completed, onToggle }: ProtocolTabProps) {
 
               {isExpanded && (
                 <div className="px-4 pb-4 md:px-[20px] md:pb-[20px] animate-in slide-in-from-top-2 duration-200">
-                  <h3 className="font-lora text-[17px] font-semibold text-[var(--cream)] mb-3 leading-[1.4] md:text-[19px]">
+                  <h3 className="font-lora text-[17px] md:text-[19px] font-semibold text-[var(--cream)] mb-[12px] leading-[1.4]">
                     {day.title}
                   </h3>
                   <span className="inline-block bg-[rgba(201,169,110,0.1)] text-[var(--gold-dark)] text-[10px] font-medium tracking-wider uppercase px-2.5 py-1 rounded-full mb-3">
@@ -76,19 +76,26 @@ export function ProtocolTab({ completed, onToggle }: ProtocolTabProps) {
                     {day.description}
                   </p>
 
-                  <div className="audio-placeholder rounded-xl p-4 flex items-center gap-3 mb-4">
-                    <button 
-                      onClick={() => alert('Audio coming soon. Upload your audio file to activate this player.')}
-                      className="w-10 h-10 rounded-full bg-[var(--accent)] flex items-center justify-center flex-shrink-0"
-                    >
-                      <Play className="w-[14px] h-[14px] text-white fill-white ml-0.5" />
-                    </button>
-                    <div className="flex-1">
-                      <div className="text-[13px] font-semibold text-[var(--cream)]">Day {day.day} Prayer Audio</div>
-                      <div className="text-[11px] text-[var(--text-muted)]">Tap to play</div>
-                    </div>
-                    <div className="text-[11px] text-[var(--text-muted)]">~8 min</div>
+                  <div className="bg-[var(--bg-surface)] border border-[var(--border)] rounded-[10px] p-[12px_16px] mb-[14px]">
+                    <audio 
+                      controls 
+                      preload="none" 
+                      src={`/audios/day${day.day}-prayer.MP3`}
+                      className="w-full accent-[var(--gold)] bg-transparent"
+                    />
+                    <p className="text-[11px] text-[var(--text-muted)] mt-[6px] text-center">
+                      Listen with headphones for the best experience.
+                    </p>
                   </div>
+
+                  <a
+                    href={`/pdfs/day${day.day}-guide.pdf`}
+                    download
+                    className="flex items-center justify-center gap-2 w-full p-[11px_16px] bg-transparent border border-[var(--gold)] rounded-[8px] text-[var(--gold)] text-[12px] font-bold font-inter cursor-pointer mb-[10px] no-underline hover:bg-[rgba(201,169,110,0.1)] transition-colors"
+                  >
+                    <Download className="w-[14px] h-[14px]" />
+                    Download Prayer Guide
+                  </a>
 
                   {isCompleted ? (
                     <div className="w-full py-2.5 bg-[var(--success-bg)] text-[var(--success)] border border-[var(--success)] rounded-lg text-center text-[13px] md:text-[14px] font-semibold flex items-center justify-center gap-2">
@@ -100,7 +107,7 @@ export function ProtocolTab({ completed, onToggle }: ProtocolTabProps) {
                         e.stopPropagation();
                         onToggle(day.day);
                       }}
-                      className="w-full py-2.5 md:py-[16px] bg-[#C9A96E] text-[#1C1410] rounded-lg text-[13px] md:text-[14px] font-bold transition-colors shadow-md"
+                      className="w-full py-2.5 md:py-[16px] bg-transparent border-2 border-[var(--gold)] text-[var(--gold)] rounded-lg text-[13px] md:text-[14px] font-bold hover:bg-[rgba(201,169,110,0.1)] transition-colors shadow-md"
                     >
                       Mark as Completed
                     </button>

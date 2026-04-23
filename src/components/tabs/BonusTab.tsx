@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { FREQUENCIES, TEXTS } from '@/app/lib/content';
-import { Play, AlertTriangle, ChevronDown, X } from 'lucide-react';
+import { AlertTriangle, ChevronDown, X, Download } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface Angel {
@@ -61,7 +61,7 @@ const ANGELS: Angel[] = [
     meaning: "Beauty of God",
     guardian: "Beauty, joy and the renewal of hope",
     description: "Jophiel is the angel of divine beauty and joy, the guardian who restores hope when circumstances have made everything feel gray and heavy. Her presence over your life means you were created to carry beauty into every space you enter including the space of your marriage. Jophiel works to renew your sense of hope, to restore the beauty of what your marriage was meant to be and to remind you that God has not finished painting your story.",
-    prayer: "Archangel Jophiel, guardian of divine beauty and keeper of hope, breathe beauty back into my marriage today. Where ugliness has entered bring the beauty of truth. Where joy has left call it back. Where hope has grown faint let it burn bright again. Help me to see my husband through eyes of grace rather than eyes of person. Help me to see my marriage as God sees it, not as it is today but as it is becoming in His hands. Let beauty have the final word. In the name of Jesus, amen."
+    prayer: "Archangel Jophiel, guardian of divine beauty and keeper of hope, breathe beauty back into my marriage today. Where ugliness has entered bring the beauty of truth. Where joy has left call it back. Where hope has grown faint let it burn bright again. Help me to see my husband through eyes of grace rather than eyes of pain. Help me to see my marriage as God sees it, not as it is today but as it is becoming in His hands. Let beauty have the final word. In the name of Jesus, amen."
   }
 ];
 
@@ -162,14 +162,17 @@ export function BonusTab() {
                     <span className="text-[10px] font-medium tracking-wider uppercase text-[var(--gold)] mb-1 block">How to use</span>
                     <p className="text-[12px] md:text-[13px] text-[var(--cream)] leading-relaxed">{freq.usage}</p>
                   </div>
-                  <div className="audio-placeholder rounded-xl p-4 flex items-center gap-3">
-                    <button className="w-10 h-10 rounded-full bg-[var(--accent)] flex items-center justify-center flex-shrink-0">
-                      <Play className="w-[14px] h-[14px] text-white fill-white ml-0.5" />
-                    </button>
-                    <div className="flex-1">
-                      <div className="text-[13px] font-semibold text-[var(--cream)]">Frequency Audio</div>
-                      <div className="text-[11px] text-[var(--text-muted)]">Tap to play • ~10 min</div>
-                    </div>
+                  
+                  <div className="bg-[var(--bg-surface)] border border-[var(--border)] rounded-[10px] p-[12px_16px] mb-[14px]">
+                    <audio 
+                      controls 
+                      preload="none" 
+                      src={`/frequencies/${freq.value.replace(' ', '').toUpperCase()}.MP3`}
+                      className="w-full accent-[var(--gold)] bg-transparent"
+                    />
+                    <p className="text-[11px] text-[var(--text-muted)] mt-[6px] text-center">
+                      Listen with headphones for the best experience.
+                    </p>
                   </div>
                 </div>
               )}
@@ -242,11 +245,11 @@ export function BonusTab() {
           Discover Your Guardian Angel
         </h3>
         <p className="text-[13px] md:text-[14px] text-[var(--text-secondary)] leading-relaxed mb-4">
-          Your birth date and time hold a sacred significance in ancient spiritual traditions. Discover which celestial guardian has been assigned to watch over your life and your covenant.
+          Your birth date and time hold a sacred significance in ancient spiritual traditions. Discover which celestial guardian has been assigned to watch over your life and your covenant and receive their specific prayer of protection.
         </p>
         <button 
           onClick={() => setIsModalOpen(true)}
-          className="w-full p-[15px] bg-[#C9A96E] rounded-[10px] text-[#1C1410] font-semibold font-lora transition-colors"
+          className="w-full p-[15px] bg-transparent border border-[var(--gold)] rounded-[10px] text-[var(--gold)] font-semibold font-lora transition-colors"
         >
           Discover My Guardian Angel
         </button>
@@ -287,7 +290,7 @@ export function BonusTab() {
                   </div>
                   <button 
                     onClick={handleRevealAngel}
-                    className="w-full p-[15px] bg-[#C9A96E] rounded-[10px] text-[#1C1410] font-lora font-semibold text-[14px] mt-2 shadow-lg"
+                    className="w-full p-[15px] bg-[var(--accent)] rounded-[10px] text-white font-lora font-semibold text-[14px] mt-2 shadow-lg"
                   >
                     Reveal My Guardian Angel
                   </button>
@@ -323,13 +326,13 @@ export function BonusTab() {
                 <div className="flex gap-2.5">
                   <button 
                     onClick={() => { setIsModalOpen(false); resetModal(); }}
-                    className="flex-1 p-[12px] bg-[#C9A96E] border-none rounded-[10px] text-[#1C1410] font-semibold text-[13px]"
+                    className="flex-1 p-[12px] bg-[var(--accent)] border-none rounded-[10px] text-white font-semibold text-[13px]"
                   >
                     Complete
                   </button>
                   <button 
                     onClick={handleCopyPrayer}
-                    className="flex-1 p-[12px] bg-[rgba(201,169,110,0.15)] border border-[#C9A96E] rounded-[10px] text-[#C9A96E] font-semibold text-[13px] transition-all"
+                    className="flex-1 p-[12px] bg-transparent border border-[var(--border-active)] rounded-[10px] text-[var(--gold)] font-semibold text-[13px] transition-all"
                   >
                     {copyStatus}
                   </button>

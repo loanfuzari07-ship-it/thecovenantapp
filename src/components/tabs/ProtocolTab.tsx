@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState } from 'react';
@@ -65,10 +64,7 @@ export function ProtocolTab({ completed, onToggle }: ProtocolTabProps) {
                   Day {day.day}
                 </div>
                 {isCompleted && <CheckCircle2 className="w-4 h-4 text-[#639922]" />}
-                <h4 className={cn(
-                  "text-[14px] md:text-[16px] font-semibold flex-1 line-clamp-1 transition-colors",
-                  isCompleted ? "text-[#639922]" : "text-[var(--cream)]"
-                )}>
+                <h4 className="text-[14px] md:text-[16px] font-semibold flex-1 line-clamp-1 text-[var(--cream)]">
                   {day.title}
                 </h4>
                 <ChevronDown className={cn("w-4 h-4 text-[var(--text-muted)] transition-transform", isExpanded && "rotate-180")} />

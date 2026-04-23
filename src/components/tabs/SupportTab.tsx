@@ -1,3 +1,4 @@
+
 "use client";
 
 import { Mail, Clock, ShieldCheck } from 'lucide-react';
@@ -56,7 +57,7 @@ export function SupportTab() {
 
       <a
         href="mailto:lanovdigital@gmail.com?subject=Covenant App Support Request"
-        className="block w-full py-[15px] md:py-[18px] bg-[var(--accent)] text-white text-center font-bold rounded-xl text-[14px] md:text-[15px] transition-colors shadow-lg"
+        className="block w-full py-[15px] md:py-[18px] bg-[#C9A96E] hover:bg-[#A8854A] text-[#1C1410] text-center font-bold rounded-xl text-[14px] md:text-[15px] transition-colors shadow-lg no-underline"
       >
         Contact Support Team
       </a>

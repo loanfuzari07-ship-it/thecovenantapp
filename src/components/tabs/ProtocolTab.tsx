@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState } from 'react';
@@ -90,7 +91,7 @@ export function ProtocolTab({ completed, onToggle }: ProtocolTabProps) {
                   <a
                     href={`/pdfs/day${day.day}-guide.pdf`}
                     download
-                    className="flex items-center justify-center gap-2 w-full p-[11px_16px] bg-[var(--cream)] hover:bg-[var(--gold-light)] text-[var(--bg-primary)] border-none rounded-[8px] text-[12px] font-bold font-inter cursor-pointer mb-[10px] no-underline transition-colors"
+                    className="flex items-center justify-center gap-2 w-full p-[11px_16px] bg-transparent hover:bg-[rgba(201,169,110,0.1)] text-[var(--gold)] border border-[var(--border-active)] rounded-[8px] text-[12px] font-bold font-inter cursor-pointer mb-[10px] no-underline transition-colors"
                   >
                     <Download className="w-[14px] h-[14px]" />
                     Download Prayer Guide
@@ -106,7 +107,7 @@ export function ProtocolTab({ completed, onToggle }: ProtocolTabProps) {
                         e.stopPropagation();
                         onToggle(day.day);
                       }}
-                      className="w-full py-2.5 md:py-[16px] bg-[var(--accent)] hover:bg-[var(--accent-dark)] border-none text-white rounded-[8px] text-[13px] md:text-[14px] font-bold transition-colors shadow-md"
+                      className="w-full py-2.5 md:py-[16px] bg-[#C9A96E] hover:bg-[#A8854A] border-none text-[#1C1410] rounded-[8px] text-[13px] md:text-[14px] font-bold transition-colors shadow-md"
                     >
                       Mark as Completed
                     </button>

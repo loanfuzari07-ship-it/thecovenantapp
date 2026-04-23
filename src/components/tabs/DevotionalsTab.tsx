@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState } from 'react';
@@ -72,8 +73,13 @@ export function DevotionalsTab({ completed, onToggle, notes, onAddNote, onDelete
                 <div className="bg-[var(--bg-surface)] border border-[var(--border-active)] px-3 py-1 rounded-full text-[11px] font-semibold text-[var(--gold)]">
                   Day {dev.day}
                 </div>
-                {isCompleted && <CheckCircle2 className="w-4 h-4 text-[var(--gold)]" />}
-                <h4 className="text-[14px] md:text-[16px] font-semibold text-[var(--cream)] flex-1 line-clamp-1">{dev.title}</h4>
+                {isCompleted && <CheckCircle2 className="w-4 h-4 text-[#639922]" />}
+                <h4 className={cn(
+                  "text-[14px] md:text-[16px] font-semibold flex-1 line-clamp-1 transition-colors",
+                  isCompleted ? "text-[#639922]" : "text-[var(--cream)]"
+                )}>
+                  {dev.title}
+                </h4>
                 <ChevronDown className={cn("w-4 h-4 text-[var(--text-muted)] transition-transform", isExpanded && "rotate-180")} />
               </div>
 
@@ -138,7 +144,7 @@ export function DevotionalsTab({ completed, onToggle, notes, onAddNote, onDelete
                         e.stopPropagation();
                         onToggle(dev.day);
                       }}
-                      className="w-full py-2.5 md:py-[16px] bg-transparent border-2 border-[var(--gold)] text-[var(--gold)] rounded-lg text-[13px] md:text-[14px] font-bold hover:bg-[rgba(201,169,110,0.1)] transition-colors shadow-md"
+                      className="w-full py-2.5 md:py-[16px] bg-[#C9A96E] hover:bg-[#A8854A] border-none text-[#1C1410] rounded-[8px] text-[13px] md:text-[14px] font-bold transition-colors shadow-md"
                     >
                       Mark as Completed
                     </button>
